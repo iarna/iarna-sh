@@ -1,0 +1,33 @@
+{
+  "name": "@iarna/sh",
+  "version": "1.0.0",
+  "description": "A parser for cross-platform command-lines.",
+  "main": "parse-pretty-error.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "pretest": "iarna-standard *.js lib/*.js",
+    "test": "tap --100 test"
+  },
+  "keywords": [],
+  "author": "Rebecca Turner <me@re-becca.org> (http://re-becca.org/)",
+  "license": "ISC",
+  "devDependencies": {
+    "@iarna/standard": "^2.0.1",
+    "tap": "^14.2.3"
+  },
+  "engines": {
+    "node": "^7.6.0"
+  },
+  "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iarna/iarna-sh.git"
+  },
+  "bugs": {
+    "url": "https://github.com/iarna/iarna-sh/issues"
+  },
+  "homepage": "https://github.com/iarna/iarna-sh#readme"
+}
