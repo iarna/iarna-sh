@@ -9,11 +9,24 @@ const finishMap = {
   'pipe': '|',
   'bg': '&'
 }
+function redir (ast) {
+  let str = ''
+  for (let fn of Object.keys(ast.fh)) {
+    if (str !== '') str += ' '
+    str += String(fn)
+    str += ast.fh[fn] === 0 ? '<' : '>'
+    if (typeof ast.fh[fn] === 'number') {
+      str += '&'
+    }
+    str += ast.fh[fn]
+  }
+  return str
+}
 function toString (ast) {
   if (ast.type === 'List') {
     return '(' + ast.value.map(toString).join('').trim() + ')' + finishMap[ast.finish]
   } else if (ast.type === 'Command') {
-    return ast.value.map(toString).join(' ') + finishMap[ast.finish]
+    return ast.value.map(toString).join(' ') + redir(ast) + finishMap[ast.finish]
   } else if (ast.type === 'String') {
     let str = ast.value.join('')
     if (/[']/.test(str)) {
@@ -53,6 +66,7 @@ test('unix-only', async t => {
   t.is(toString(parseString('A\n\n\nB;C')), '(A;B;C;);', 'newlines')
   t.is(toString(parseString('"A;B";C')), "('A;B';C;);", 'dquotes')
   t.is(toString(parseString('A||B')), '(A||B;);', 'or')
+  t.is(toString(parseString('A|&B')), '(A2>&1|B;);', '|&')
   t.throws(() => parseString('abc||'), 'or nothing')
   t.throws(() => parseString('abc||||'), 'no double or')
   t.throws(() => parseString('abc||;'), 'no or end')
