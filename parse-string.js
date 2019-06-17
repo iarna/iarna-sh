@@ -1,6 +1,6 @@
 'use strict'
 module.exports = parseString
-const SHParser = require('./lib/sh-parser.js')
+const SHParser = require('./lib/grammar.js')
 const prettyError = require('./parse-pretty-error.js')
 
 function parseString (str) {
