@@ -21,7 +21,9 @@
   "engines": {
     "node": "^7.6.0"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@iarna/parser": "^1.0.0"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/iarna/iarna-sh.git"
